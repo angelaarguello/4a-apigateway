@@ -1,0 +1,44 @@
+type User{
+    id: ID!
+    username:String!
+    age:Int 
+    height:Float
+    is_active:Boolean
+}
+
+type Continent{
+    name: String
+    population: Int 
+    number_countries: Int 
+    avg_population: Float
+}
+
+#Mi apigateway trabaja con Paises
+type City{
+    name: String
+    population: Int 
+    localidades:[Localidad]
+}
+type Country{
+    name: String
+    capital: City
+    population: Int 
+    PIB: Float
+    continent: Continent
+    coudades: [City]
+    flag: String
+}
+
+type Query{
+    getAllUsers: [User]
+    getCityByName(name: String!): City
+    getUserByID(id: ID!):User
+    numberOfCities: Int 
+    getCountriesWithPopulationGreaterThanN(n:Int):[Country]
+}
+
+type Mutation{
+    createCity(name:String, population:Int): City
+    updateAgeUser(id:ID!, age:Int):User
+    deleAllCountries(countries:[Country]):Boolean
+}
